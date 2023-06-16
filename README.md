@@ -1,14 +1,14 @@
 # Aliens-Mini-Game
-# Bem-vindo!
-O jogo apresentado nesse repositório foi desenvolvido pelo Gustavo Costa de Andrade, estudante de análise e desenvolvimento de sistemas.
-## 🔍 Dos sonhos a realidade: Vários jogadores já sonharam em criar seus próprios games, e aqui está um que está trabalhando para tornar isso realidade...
-Desde pequeno, sempre fui encantado pelo universo dos jogos. Vejo essas narrativas como mundos paralelos aos quais podemos acessar e nos aventurar. Os desenvolvedores de jogos são verdadeiros criadores de mundos. Eles levam em conta não apenas a lógica da programação, mas também a música, os cenários, a história de cada personagem e suas motivações pessoais... São detalhes e elementos que transformam a história apresentada num espelho de verossimilhança da nossa realidade humana, adicionando um toque do fantástico.
-## 🚀 Inovando com simplicidade
-De fato essa aplicação é consideravelmente simples do ponto de vista de desenvolvimento, se comparado com alguns projetos grandes e já concluidos como o "Minecraft" por exemplo, mas vejo que para chegar lá em cima é necessário subir alguns degraus. O desenvolvimento desse projeto me ajudou a enxergar além nessas possibilidades e pude aprender novas tecnologias dentro do próprio Java. Segue o vídeo que produzi para explicar um pouco mais do projeto:
+# Welcome!
+The game presented in this repository was developed by Gustavo Costa de Andrade, a student of systems analysis and development.
+## 🔍 From dreams to reality: Several gamers have dreamed of creating their own games, and here's one that is working to make it a reality...
+Since I was little, I have always been enchanted by the universe of games. I see these narratives as parallel worlds that we can access and venture into. Game developers are true creators of worlds. They take into account not only the programming logic, but also the music, the scenarios, the story of each character and their personal motivations... These are details and elements that transform the story presented into a mirror of verisimilitude of our human reality, adding a touch of the fantastic.
+## 🚀 Innovating with simplicity
+In fact, this application is considerably simple from a development point of view, if compared to some large and already completed projects like "Minecraft" for example, but I see that to get there it is necessary to climb some steps. The development of this project helped me to see beyond these possibilities and I was able to learn new technologies within Java itself. Here is the video I produced to explain a little more about the project:
 https://www.youtube.com/watch?v=qRl9UV8Sn4E
-## 💻 Desenvolvimento do software
-Para esse desenvolvimento foi necessário muita pesquisa de campo, pois a maioria dessas informações como a classe para tocar músicas no java, ou a classe de Timer não são muito evidenciadas nos fóruns de pesquisa. Isso faz com que muitos desconheçam essas possiblidades. Mas aqui podemos conhecer mais sobre isso.
-## 👨‍🎓 Contribuindo para o desenvolvimento
-Estou postanto esse código para você que está aqui possa aprender um pouco mais do desenvolvimento Java e também me dar feedbacks para que eu possa continuar evoluindo. Dessa forma os conhecimentos adquiridos nessas classes pode continuar circulando e revelando também para outros desenvolvedores as possiblidades que a linguagem pode oferecer.
-## 📚 Acesse a documentação do jogo e itens adicionais através do link a seguir:
+## 💻 Software development
+This development required a lot of field research, as most of this information, such as the class to play music in java, or the Timer class, is not very evident in the research forums. This makes many unaware of these possibilities. But here we can know more about it.
+## 👨‍🎓 Contributing to the development
+I'm posting this code so that you can learn a little more about Java development and also give me feedback so that I can continue to evolve. In this way, the knowledge acquired in these classes can continue to circulate and also reveal to other developers the possibilities that the language can offer.
+## 📚 Access game documentation and additional items via the following link:
 https://drive.google.com/drive/folders/16pGzazjQW5D6UIE4czBoWuvDvdVMA_lH?usp=sharing
