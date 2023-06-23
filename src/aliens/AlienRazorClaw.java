@@ -10,7 +10,7 @@ public class AlienRazorClaw extends Alien{
 		vidaAlien = 15;
 		pontos = 800;
 		nome = "Razor Claw";
-		efeitoSonoroAbatido = "aln_death_scream_23.wav";
+		efeitoSonoroAbatido = "/musics/aln_death_scream_23.wav";
 		setBounds(-650, 400, 694, 300);
 		setIcon(new ImageIcon(TelaJogo.class.getResource("/aliensBosses/RazorClaw2.gif")));
 	}

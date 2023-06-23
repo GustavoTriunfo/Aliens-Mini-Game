@@ -11,7 +11,7 @@ public class Alien3 extends Alien {
 		vidaAlien = 3;
 		pontos = 30;
 		nome = "Smasher";
-		efeitoSonoroAbatido = "Xenomorph-Sounds-Like-An-Elephant.wav";
+		efeitoSonoroAbatido = "/musics/Xenomorph-Sounds-Like-An-Elephant.wav";
 		setBounds(TelaJogo.posicaoXAleatorio(), 400, 534, 380);
 		setIcon(new ImageIcon(TelaJogo.class.getResource("/images/aliensSprites/Alien" + numeroAleatorio + ".gif")));
 	}

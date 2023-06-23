@@ -1,8 +1,6 @@
 package useCase;
 
-import java.io.File;
 import java.io.IOException;
-import javax.sound.sampled.*;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -16,8 +14,7 @@ public class EfeitosSonorosEMusicas {
 	
 	public static void efeitoSonoroAlienAbatido(String nomeArquivo) {
 		try {
-			File file = new File(nomeArquivo);
-			  AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+			  AudioInputStream audioStream = AudioSystem.getAudioInputStream(EfeitosSonorosEMusicas.class.getResourceAsStream(nomeArquivo));
 			  alinMorreu = AudioSystem.getClip();
 			  alinMorreu.open(audioStream);
 			  alinMorreu.start();
@@ -33,8 +30,7 @@ public class EfeitosSonorosEMusicas {
 	
 	public static void efeitoSonoroTiro() {
 		try {
-		File file = new File("Sound-Effect-Glock-17-pronto.wav");
-		  AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+		  AudioInputStream audioStream = AudioSystem.getAudioInputStream(EfeitosSonorosEMusicas.class.getResourceAsStream("/musics/Sound-Effect-Glock-17-pronto.wav"));
 		  disparo = AudioSystem.getClip();
 		  disparo.open(audioStream);
 		  disparo.start();
@@ -49,8 +45,7 @@ public class EfeitosSonorosEMusicas {
 	}
 	public static void efeitoSonoroPegouMunicao() {
 		try {
-		File file = new File("Item-Pick-up.wav");
-		  AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+		  AudioInputStream audioStream = AudioSystem.getAudioInputStream(EfeitosSonorosEMusicas.class.getResourceAsStream("/musics/Item-Pick-up.wav"));
 		  pegarMunicao = AudioSystem.getClip();
 		  pegarMunicao.open(audioStream);
 		  pegarMunicao.start();
@@ -66,8 +61,7 @@ public class EfeitosSonorosEMusicas {
 	
 	public static void efeitoSonoroRecarregou() {
 		try {
-		File file = new File("Revolver-Reload-Sound-Effects.wav");
-		  AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+		  AudioInputStream audioStream = AudioSystem.getAudioInputStream(EfeitosSonorosEMusicas.class.getResourceAsStream("/musics/Revolver-Reload-Sound-Effects.wav"));
 		  recarregou = AudioSystem.getClip();
 		  recarregou.open(audioStream);
 		  recarregou.start();
@@ -82,8 +76,7 @@ public class EfeitosSonorosEMusicas {
 	}
 		public static void efeitoSonoroPenteVazio() {
 			try {
-			File file = new File("Empty gun shot.wav");
-			  AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+			  AudioInputStream audioStream = AudioSystem.getAudioInputStream(EfeitosSonorosEMusicas.class.getResourceAsStream("/musics/Empty gun shot.wav"));
 			  armaVazia = AudioSystem.getClip();
 			  armaVazia.open(audioStream);
 			  armaVazia.start();
@@ -99,8 +92,7 @@ public class EfeitosSonorosEMusicas {
 		
 		public static void efeitoSonoroBossDerrotado() {
 			try {
-			File file = new File("Demon_s-Crest-OST_-A-Treasure-Recovered.wav");
-			  AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+			  AudioInputStream audioStream = AudioSystem.getAudioInputStream(EfeitosSonorosEMusicas.class.getResourceAsStream("/musics/Demon_s-Crest-OST_-A-Treasure-Recovered.wav"));
 			  bossMorto = AudioSystem.getClip();
 			  bossMorto.open(audioStream);
 			  bossMorto.start();
@@ -116,8 +108,7 @@ public class EfeitosSonorosEMusicas {
 		
 		public static void efeitoSonoroRazorClaw() {
 			try {
-			File file = new File("alien_breathing_steady_01.wav");
-			  AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+			  AudioInputStream audioStream = AudioSystem.getAudioInputStream(EfeitosSonorosEMusicas.class.getResourceAsStream("/musics/alien_breathing_steady_01.wav"));
 			  somRazor = AudioSystem.getClip();
 			  somRazor.open(audioStream);
 			  FloatControl gainControl = (FloatControl) somRazor.getControl(FloatControl.Type.MASTER_GAIN);
@@ -137,8 +128,7 @@ public class EfeitosSonorosEMusicas {
 		
 		public static void musicaJogoPerdido() {
 			try {
-				 File fileAudio = new File("Demon_s-Crest-OST_-Challenge-of-Devils-_Intro.wav");
-				  AudioInputStream audioStream = AudioSystem.getAudioInputStream(fileAudio);
+				  AudioInputStream audioStream = AudioSystem.getAudioInputStream(EfeitosSonorosEMusicas.class.getResourceAsStream("/musics/Demon_s-Crest-OST_-Challenge-of-Devils-_Intro.wav"));
 				  cenaPerdido = AudioSystem.getClip();
 				  cenaPerdido.open(audioStream);
 				  cenaPerdido.loop(-1);
@@ -152,8 +142,7 @@ public class EfeitosSonorosEMusicas {
 		}
 	public static void musicaCena1() {
 		try {
-			 File fileAudio = new File("Alien-vs-Predator-City-.wav");
-			  AudioInputStream audioStream = AudioSystem.getAudioInputStream(fileAudio);
+			  AudioInputStream audioStream = AudioSystem.getAudioInputStream(EfeitosSonorosEMusicas.class.getResourceAsStream("/musics/Alien-vs-Predator-City-.wav"));
 			  cena1 = AudioSystem.getClip();
 			  cena1.open(audioStream);
 			  cena1.loop(-1);
@@ -172,8 +161,7 @@ public class EfeitosSonorosEMusicas {
 	
 	public static void musicaCena2() {
 		try {
-			 File fileAudio = new File("Demon_s-Crest-OST_-Metropolis-of-Ruin-.wav");
-			  AudioInputStream audioStream = AudioSystem.getAudioInputStream(fileAudio);
+			  AudioInputStream audioStream = AudioSystem.getAudioInputStream(EfeitosSonorosEMusicas.class.getResourceAsStream("/musics/Demon_s-Crest-OST_-Metropolis-of-Ruin-.wav"));
 			  cena2 = AudioSystem.getClip();
 			  cena2.open(audioStream);
 			  cena2.loop(-1);
@@ -192,8 +180,7 @@ public class EfeitosSonorosEMusicas {
 	
 	public static void musicaCena3() {
 		try {
-			 File fileAudio = new File("Alien-vs-Predator-Space-Port.wav");
-			  AudioInputStream audioStream = AudioSystem.getAudioInputStream(fileAudio);
+			  AudioInputStream audioStream = AudioSystem.getAudioInputStream(EfeitosSonorosEMusicas.class.getResourceAsStream("/musics/Alien-vs-Predator-Space-Port.wav"));
 			  cena3 = AudioSystem.getClip();
 			  cena3.open(audioStream);
 			  FloatControl gainControl = (FloatControl) cena3.getControl(FloatControl.Type.MASTER_GAIN);
@@ -214,8 +201,7 @@ public class EfeitosSonorosEMusicas {
 	
 	public static void musicaCena4() {
 		try {
-			 File fileAudio = new File("Castlevania-Dracula-X-OST-Picture-of-the-Ghost-Ship.wav");
-			  AudioInputStream audioStream = AudioSystem.getAudioInputStream(fileAudio);
+			  AudioInputStream audioStream = AudioSystem.getAudioInputStream(EfeitosSonorosEMusicas.class.getResourceAsStream("/musics/Castlevania-Dracula-X-OST-Picture-of-the-Ghost-Ship.wav"));
 			  cena4 = AudioSystem.getClip();
 			  cena4.open(audioStream);
 			  FloatControl gainControl = (FloatControl) cena4.getControl(FloatControl.Type.MASTER_GAIN);
@@ -235,8 +221,7 @@ public class EfeitosSonorosEMusicas {
 }
 	public static void musicaBoss() {
 		try {
-			 File fileAudio = new File("08-Battle-Alien-vs.-Predator-OST-SNES.wav");
-			  AudioInputStream audioStream = AudioSystem.getAudioInputStream(fileAudio);
+			  AudioInputStream audioStream = AudioSystem.getAudioInputStream(EfeitosSonorosEMusicas.class.getResourceAsStream("/musics/08-Battle-Alien-vs.-Predator-OST-SNES.wav"));
 			  boss = AudioSystem.getClip();
 			  boss.open(audioStream);
 			  FloatControl gainControl = (FloatControl) boss.getControl(FloatControl.Type.MASTER_GAIN);

@@ -11,7 +11,7 @@ public class Alien1 extends Alien {
 		vidaAlien = 2;
 		pontos = 20;
 		nome = "Stalker";
-		efeitoSonoroAbatido = "Xenomorph-Sounds-Like-An-Elephant.wav";
+		efeitoSonoroAbatido = "/musics/Xenomorph-Sounds-Like-An-Elephant.wav";
 		setBounds(TelaJogo.posicaoXAleatorio(), 400, 412, 345);
 		setIcon(new ImageIcon(TelaJogo.class.getResource("/images/aliensSprites/Alien" + numeroAleatorio + ".gif")));
 	}
