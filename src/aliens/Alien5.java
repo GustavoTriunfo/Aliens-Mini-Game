@@ -11,7 +11,7 @@ public class Alien5 extends Alien{
 		vidaAlien = 1;
 		pontos = 17;
 		nome = "Arachnoid";
-		efeitoSonoroAbatido = "Xenomorph-Sounds-Like-An-Elephant.wav";
+		efeitoSonoroAbatido = "/musics/Xenomorph-Sounds-Like-An-Elephant.wav";
 		setBounds(300, 0, 564, 280);
 		setIcon(new ImageIcon(TelaJogo.class.getResource("/aliensFastMoving/AlienFastMoving" + numeroAleatorio + ".gif")));
 		
