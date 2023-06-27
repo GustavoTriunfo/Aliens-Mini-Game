@@ -13,7 +13,8 @@ public class RazorClawMovement extends Thread{
 	private Pilha pilha;
 	private static int perigoRazor = 0;
 	private static int velocidadeRazor = 4;
-private boolean chegouNaDireita = false;
+    private boolean chegouNaDireita = false;
+
     public RazorClawMovement(Alien alienLabel, JLabel barraPerigo, Pilha pilha,JLabel contagemOnda) {
         this.alienLabel = alienLabel;
         barra = barraPerigo;
@@ -46,10 +47,7 @@ private boolean chegouNaDireita = false;
         	EfeitosSonorosEMusicas.efeitoSonoroRazorClawParar();
         	EfeitosSonorosEMusicas.pararMusicaBoss();
         	EfeitosSonorosEMusicas.efeitoSonoroBossDerrotado();
-    		int numero = Integer.parseInt(contagemNumeroOnda.getText());
-    		numero++;
-    		String novoNumero = Integer.toString(numero);
-    		contagemNumeroOnda.setText(novoNumero);
+    		
     		
     		barra.setBounds(109, 33, pilha.desempilharBoss(perigoRazor), 39);
     	}
@@ -62,6 +60,7 @@ private boolean chegouNaDireita = false;
          if(alienLabel.getLocation().x >= 1600) {
          	alienLabel.setIcon(new ImageIcon(TelaJogo.class.getResource("/aliensBosses/RazorClaw1.gif")));
          	chegouNaDireita = true;
+         	alienLabel.setDirecao(1);
          	perigoRazor += 10;
          	barra.setBounds(109, 33, pilha.empilharBoss(10), 39);
          }
@@ -83,6 +82,7 @@ private boolean chegouNaDireita = false;
         if(alienLabel.getLocation().x <= -750) {
         	alienLabel.setIcon(new ImageIcon(TelaJogo.class.getResource("/aliensBosses/RazorClaw2.gif")));
         	chegouNaDireita = false;
+        	alienLabel.setDirecao(2);
         	perigoRazor += 10;
         	barra.setBounds(109, 33, pilha.empilharBoss(10), 39);
         }

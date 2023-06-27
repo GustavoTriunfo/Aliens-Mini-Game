@@ -11,6 +11,7 @@ public abstract class Alien extends JLabel {
 	protected String nome = null;
 	protected static int posicaoMapa;
 	protected String efeitoSonoroAbatido = null;
+	protected int direcao;
 	
 	public boolean alienAbatido() {
 		if(vidaAlien <= 0) {
@@ -40,7 +41,15 @@ public abstract class Alien extends JLabel {
 	public int getNumeroIcone() {
 		return numeroIcone;
 	}
+	public int getDirecao() {
+		return direcao;
+	}
+	public void setDirecao(int valor) {
+		direcao = valor;
+	}
+	
 	public String getEfeitoSonoroAbatido() {
 		return efeitoSonoroAbatido;
 	}
+	
 }

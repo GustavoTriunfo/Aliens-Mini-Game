@@ -1,11 +1,9 @@
 package telas;
 import java.awt.EventQueue;
-import java.awt.MouseInfo;
 import java.awt.Point;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
 import aliens.Alien;
@@ -14,6 +12,12 @@ import aliens.Alien2;
 import aliens.Alien3;
 import aliens.Alien4;
 import aliens.Alien5;
+import aliens.Alien6;
+import aliens.Alien7;
+import aliens.Alien8;
+import aliens.Alien9;
+import aliens.AlienGoldenRoyalGuard;
+import aliens.AlienGrayRoyalGuard;
 import aliens.AlienRazorClaw;
 import estruturasDeDados.Fila;
 import estruturasDeDados.IntNoAlien;
@@ -24,8 +28,11 @@ import municao.Municao;
 import municao.MunicaoLendaria;
 import municao.MunicaoNormal;
 import municao.MunicaoRara;
+import useCase.AlienAnimation;
+import useCase.AlienDeathAnimationTask;
 import useCase.AlienFastMovementThread;
 import useCase.AlienMovementThread;
+import useCase.AlienThread;
 import useCase.EfeitosSonorosEMusicas;
 import useCase.GerenciarHorda;
 import useCase.RazorClawMovement;
@@ -56,6 +63,9 @@ import java.awt.Toolkit;
 import javax.swing.SwingConstants;
 
 public class TelaJogo extends JFrame {
+
+	private static JLabel fundoEntradaPredio = new JLabel("");
+	private static JLabel MissionComplete = new JLabel("");
 	private static int contagemPontos = 0;
 	 private static JLabel pontos = new JLabel("0");
 	private static String musicaAtual = null;
@@ -75,7 +85,6 @@ public class TelaJogo extends JFrame {
     private static int aliensMortosNaOnda = 0;
     private volatile static boolean isRunningVerificaAlien = true;
     private volatile static boolean isRunningAlienAnda = true;
-    private volatile static boolean isRunningAlien = true;
     private volatile static boolean isRunningMunicao = true;
 	private volatile static boolean isRunningMusica = true;
 	private volatile static boolean isRunningAlienRapido = true;
@@ -86,14 +95,14 @@ public class TelaJogo extends JFrame {
     private static Alien alien = null;
 	private static JLabel sangueDisparo = new JLabel("");
 	private static JLabel alien1 = new JLabel("");
-	private static int municaoCarga = 3;
+	private static int municaoCarga = 99;
 	private static int contagemAliens = 0;
 	private static int contagemOnda = 1;
 	private int BarraPerigo = 0;
 	private static JLabel numeroMunicao = new JLabel(Integer.toString(municaoCarga));
 	private static JLabel numeroAliens = new JLabel(Integer.toString(contagemAliens));
 	
-	private static boolean musica1 = false, musica2 = false, musica3 = false, musicaBoss = false, musica4 = false;
+	private static boolean musica1 = false, musica2 = false, musica3 = false, musicaBoss = false, musica4 = false, musica5 = false;
 	private static JButton startButton = new JButton("Start");
 	private static JLabel fundo = new JLabel("");
 	private static JPanel contentPane;
@@ -105,7 +114,9 @@ public class TelaJogo extends JFrame {
 	private static JLabel contagemNumeroOnda = new JLabel(Integer.toString(contagemOnda));
     private static ListaEncadeadaAlien listaEncadeada = new ListaEncadeadaAlien();
 	private static GerenciarHorda horda = new GerenciarHorda(tempo,startButton,contagemNumeroOnda,numeroAliens);
-	private Stopwatch stopwatch = new Stopwatch(tempo,startButton,horda,alien1);
+    private static  AlienThread alienThread = new AlienThread(5,200);
+   
+	private Stopwatch stopwatch = new Stopwatch(tempo,startButton,horda,alien1, alienThread );
 	//private static EfeitosSonorosEMusicas efeitosSonorosEMusicas = new EfeitosSonorosEMusicas();
 	private static ListaEncadeadaAlien listaEncadeadaAlien = new ListaEncadeadaAlien();
 	
@@ -154,7 +165,7 @@ public class TelaJogo extends JFrame {
 	        	
 	        	contagemPontos += alien.getPontos();
 	        	pontos.setText(Integer.toString(contagemPontos));
-	            alien.setVisible(false);
+
 	            tamanhoPerigo -= 100;
 	            listaEncadeada.insereNo_inicio(alien.getPontos(), alien);
 	            perigo.setBounds(109, 33,  pilha.desempilhar(), 39);
@@ -163,6 +174,14 @@ public class TelaJogo extends JFrame {
 	            contagemAliens++;
 	            numeroAliens.setText(Integer.toString(contagemAliens));
 	            aliensMortosNaOnda++;
+	         // Código para quando o alien morrer
+	            AlienDeathAnimationTask alienDied = new AlienDeathAnimationTask(alien,MissionComplete,contagemNumeroOnda);
+	            if(alien.getAlienNome().equals("Razor Claw")) {
+	            	alienDied.animationRazorClaw();
+	            }else {
+	      
+	            alienDied.startAnimation(50); 
+	            }
 	        }
 	    }else {
 	    	EfeitosSonorosEMusicas.efeitoSonoroPenteVazio();
@@ -398,6 +417,18 @@ public class TelaJogo extends JFrame {
 		
 		fundoCidade.setIcon(new ImageIcon(TelaJogo.class.getResource("/images/fundoCenarioCidade (1).gif")));
 		fundoCidade.setVisible(false);
+		
+
+		MissionComplete.setVisible(false);
+		MissionComplete.setIcon(new ImageIcon(TelaJogo.class.getResource("/images/missionComplete.png")));
+		MissionComplete.setBounds(445, 35, 1003, 687);
+		contentPane.add(MissionComplete);
+		
+
+		fundoEntradaPredio.setVisible(false);
+		fundoEntradaPredio.setIcon(new ImageIcon(TelaJogo.class.getResource("/images/fundoCenarioEntradaPredio.gif")));
+		fundoEntradaPredio.setBounds(-146, 36, 1920, 1090);
+		contentPane.add(fundoEntradaPredio);
 		fundoCidade.setHorizontalAlignment(SwingConstants.RIGHT);
 		fundoCidade.setBounds(36, -314, 1982, 1121);
 		contentPane.add(fundoCidade);
@@ -453,19 +484,32 @@ public class TelaJogo extends JFrame {
 	}
 	
 	public static  void criarAlienQueAnda() {
-		
-	    int alienSorteado = rand.nextInt(1, 8);
+		int nivelOnda = 0;
+	    if (Integer.parseInt(contagemNumeroOnda.getText()) <= 10) {
+        nivelOnda = 9;
+    } else if (Integer.parseInt(contagemNumeroOnda.getText()) > 10 && Integer.parseInt(contagemNumeroOnda.getText()) < 15) {
+        nivelOnda = 15;
+    }
+	    int alienSorteado = rand.nextInt(1, nivelOnda);
 
-//	  if(alienSorteado >= 9 && alienSorteado <= 16) {
-	
-	    	alienAnda = new Alien4(alienSorteado);
-
-	    	if(alienAnda.getNumeroIcone() % 2 == 1) {
+			if(alienSorteado < 9) {
+				alienAnda = new Alien4(alienSorteado);
+			}
+			else if(alienSorteado == 9 || alienSorteado == 10) {
+	    	alienAnda = new Alien7(alienSorteado);
+			}
+			else if(alienSorteado == 11 || alienSorteado == 12) {
+			alienAnda = new Alien8(alienSorteado);
+			}
+			else if(alienSorteado == 13 || alienSorteado == 14) {
+				alienAnda = new Alien9(alienSorteado);
+				}
+	    	if(alienAnda.getNumeroIcone() % 2 == 1 && alienAnda.getAlienNome().equals("Moving Warrior")) {
 	    		alienAnda.setLocation(1400, 400);
 	    	}
 	    	AlienMovementThread movementThread = new AlienMovementThread(alienAnda, alienAnda.getNumeroIcone());
 	    	 movementThread.start();
-	    	//}
+
 	
 	   
    	
@@ -489,7 +533,7 @@ public class TelaJogo extends JFrame {
 	    
 	}
 	
-public static  void criarAlienQueAndaRapido() {
+public static void criarAlienQueAndaRapido() {
 		
 	    int alienSorteado = rand.nextInt(1, 4);
 
@@ -528,15 +572,17 @@ public static  void criarAlienQueAndaRapido() {
 
 	public static void criarAlien() {
 		
-//		 lock.lock();
-//	   try {
+
 	    int nivelOnda = 0;
 	    if (Integer.parseInt(contagemNumeroOnda.getText()) <= 4) {
-	        nivelOnda = 10;
-	    } else if (Integer.parseInt(contagemNumeroOnda.getText()) > 4 && Integer.parseInt(contagemNumeroOnda.getText()) <= 12) {
-	        nivelOnda = 12;
+	        nivelOnda = 11;
+	    } else if (Integer.parseInt(contagemNumeroOnda.getText()) > 4 && Integer.parseInt(contagemNumeroOnda.getText()) <= 10) {
+	        nivelOnda = 13;
 	    }
-	   
+	    else if (Integer.parseInt(contagemNumeroOnda.getText()) > 10 && Integer.parseInt(contagemNumeroOnda.getText()) <= 14) {
+	        nivelOnda = 15;
+	    }
+	  
 	    int alienSorteado = rand.nextInt(1, nivelOnda);
 	    //String numeroAleatorio = Integer.toString(alienSorteado);
 
@@ -550,6 +596,9 @@ public static  void criarAlienQueAndaRapido() {
 	    else if (alienSorteado == 11 || alienSorteado == 12) {
 	            alien = new Alien3(alienSorteado);
 	        }
+	    else if (alienSorteado == 13 || alienSorteado == 14) {
+            alien = new Alien6(alienSorteado);
+        }
 	   
     	
 	    if (alien != null) {
@@ -567,19 +616,13 @@ public static  void criarAlienQueAndaRapido() {
 	    contentPane.repaint();
 	    }
 	    
-//	} finally {
-//        lock.unlock();
-//    }
+
 	}
 	    
 	
 	public static int posicaoXAleatorio() {
-		return rand.nextInt(450,1000);
+		return rand.nextInt(450,900);
 	}
-//	public static int posicaoXAleatorio() {
-//		return rand.nextInt(383,1150);
-//	}
-
 	
 public static void calcularDisparo() {
 	MouseEvent e = null;
@@ -607,7 +650,7 @@ public static void criarMunicao() {
 	            municao = new MunicaoLendaria();
 	        }
 	   // }
-	    else if (municaoSorteada > 50 && municaoSorteada < 64) {
+	    else if (municaoSorteada > 48 && municaoSorteada < 64) {
 	    	municao = new MunicaoRara();
 	    } else {
 	    	municao = new MunicaoNormal();
@@ -641,7 +684,6 @@ static Thread threadVerificaAliens = new Thread(() -> {
     		isRunningVerificaAlien = false;
     		isRunningMunicao = false;
     		isRunningMusica = false;
-    		isRunningAlien = false;
     		
 
     		//System.exit(0);
@@ -714,7 +756,7 @@ static Thread gerenciarMusicas = new Thread(() -> {
         	musica1 = true;
         	musicaAtual = "musica1";
         	EfeitosSonorosEMusicas.musicaCena1();
-
+        	
 
         }
         else if(musica2 == false && contagemOnda > 4 && contagemOnda < 8) {
@@ -741,13 +783,28 @@ static Thread gerenciarMusicas = new Thread(() -> {
         	musicaAtual = "musicaBoss";
         	criarAlienBoss1();
         }
-        else if(musica4 == false && contagemOnda > 9 && contagemOnda <= 11) {
-
+        else if(musica4 == false && contagemOnda > 10 && contagemOnda < 14) {
         	musica4 = true;
         	musicaAtual = "musica4";
         	EfeitosSonorosEMusicas.musicaCena4();
         	fundo.setIcon(new ImageIcon(TelaJogo.class.getResource("/images/fundoCenarioClaro.png")));
         	fundoCidade.setVisible(true);
+        }
+        else if(musica5 == false && contagemOnda > 13 && contagemOnda < 17) {
+        	 isRunningAlienAnda = false;
+        	 isRunningAlienRapido = false;
+        	 alienThread.stopThread();
+        	EfeitosSonorosEMusicas.pararMusicaCena4();
+        	musica5 = true;
+        	musicaAtual = "musica5";
+        	EfeitosSonorosEMusicas.musicaCena5();
+        	fundoEntradaPredio.setVisible(true);
+        	fundoCidade.setVisible(true);
+        	fundoCidade.setIcon(new ImageIcon(TelaJogo.class.getResource("/images/fundoCenarioEntradaPredio.gif")));
+        	
+            AlienAnimation alienAnimation = new AlienAnimation(MissionComplete, contentPane, isRunningAlienAnda, isRunningAlienRapido, isRunningMunicao);
+    	    alienAnimation.animationRoyalsIntro();
+    	    System.out.println("passou o método");
         }
 //        else {
 //        	System.out.println("música não foi acionada");
@@ -779,6 +836,9 @@ public static void pararMusicas() {
 	case "musica4":
 		EfeitosSonorosEMusicas.pararMusicaCena4();
 		break;
+	case "musica5":
+		EfeitosSonorosEMusicas.pararMusicaCena5();
+		break;
 	}
 }
 
@@ -787,7 +847,7 @@ public static void criarAliensAndam() {
 	}
 
 static Thread criarAliensAndam = new Thread(() -> {
-    while (isRunningAlien == true) {
+    while (isRunningAlienAnda == true) {
     	int numeroAleatorio = rand.nextInt(6,8);
     	criarAlienQueAnda();
         try {
