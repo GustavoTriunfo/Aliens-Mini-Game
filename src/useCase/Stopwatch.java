@@ -33,7 +33,7 @@ public class Stopwatch implements ActionListener{
  private Random rand = new Random();
  private static GerenciarHorda horda = new GerenciarHorda(timeLabel,startButton,numeroOnda,qtdAliens);
  
- private static AlienThread alienThread = new AlienThread(5,200);
+ private static AlienThread alienThread;
  
 
  
@@ -55,12 +55,13 @@ public class Stopwatch implements ActionListener{
  });
  
  
- public Stopwatch(JLabel tempo, JButton start, GerenciarHorda modoHorda, JLabel alienNovo){
+ public Stopwatch(JLabel tempo, JButton start, GerenciarHorda modoHorda, JLabel alienNovo, AlienThread alienThread ){
   alien = alienNovo;
   horda = modoHorda;
   startButton = start;
   timeLabel = tempo;
   tempo.setText(minutes_string+":"+seconds_string);
+  Stopwatch.alienThread = alienThread;
 //  timeLabel.setBounds(100,100,200,100);
 //  timeLabel.setFont(new Font("Verdana",Font.PLAIN,35));
 //  timeLabel.setBorder(BorderFactory.createBevelBorder(1));

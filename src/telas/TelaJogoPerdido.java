@@ -16,6 +16,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Toolkit;
 
 public class TelaJogoPerdido extends JFrame 
 {
@@ -46,6 +47,7 @@ public class TelaJogoPerdido extends JFrame
 	 */
 	public TelaJogoPerdido(JLabel pontos, JLabel tempo, JLabel aliensMortos) 
 	{
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaJogoPerdido.class.getResource("/images/HordeLogo.png")));
 		pontosHighscore = pontos;
 		tempoTotal.setForeground(Color.WHITE);
 		tempoTotal.setFont(new Font("PKMN RBYGSC", Font.PLAIN, 50));

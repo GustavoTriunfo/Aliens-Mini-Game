@@ -7,7 +7,7 @@ import telas.TelaJogo;
 public class Alien1 extends Alien {
 
 	public Alien1(int numeroAleatorio){
-		posicaoMapa = 19;
+		posicaoMapa = 18;
 		vidaAlien = 2;
 		pontos = 20;
 		nome = "Stalker";
