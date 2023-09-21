@@ -7,7 +7,7 @@ This is the first mission. The next one depends on your success in this one. We 
 
 <a href="https://imgbb.com/"><img src="https://i.ibb.co/mqHXf2M/alien-wall1.gif" alt="alien-wall1" border="0"></a>
 
-# 1# Mission: Defeat Razor Claws at the subway!
+# #1 Mission: Defeat Razor Claws at the subway!
 The first mission and part of the second are available for you to play! The executable file of the project (.jar) is in the release menu. Version 2.0.
 
 <a href="https://ibb.co/jVX2rRQ"><img src="https://i.ibb.co/cbnHrLZ/Captura-de-Tela-694.png" alt="Captura-de-Tela-694" border="0"></a>
